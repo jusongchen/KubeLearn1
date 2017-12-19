@@ -1,14 +1,14 @@
-PROJECT?=github.com/jusongchen/kubeLearn1
-APP?=KubeLearn1
+PROJECT?=github.com/jusongchen/KubeLearn1
+APP?=kube1
 PORT?=8089
 
 RELEASE?=0.0.1
 COMMIT?=$(shell git rev-parse --short HEAD)
 BUILD_TIME?=$(shell date -u '+%Y-%m-%d_%H:%M:%S')
-CONTAINER_IMAGE?=docker.io/juchen/${APP}
+CONTAINER_IMAGE?=juchen/${APP}
 
-# GOOS?=linux
-GOOS?=darwin
+GOOS?=linux
+# GOOS?=darwin
 GOARCH?=amd64
 
 clean:
@@ -22,12 +22,13 @@ build: clean
 
 container: build
 	docker build -t $(CONTAINER_IMAGE):$(RELEASE) .
+	# docker tag  $(APP) :$(RELEASE) .
 
 run: container
 	docker stop $(APP):$(RELEASE) || true && docker rm $(APP):$(RELEASE) || true
 	docker run --name ${APP} -p ${PORT}:${PORT} --rm \
 		-e "PORT=${PORT}" \
-		$(APP):$(RELEASE)
+		$(CONTAINER_IMAGE):$(RELEASE)
 
 test:
 	go test -v -race ./...

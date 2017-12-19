@@ -1,7 +1,9 @@
 FROM scratch
 
-ENV PORT 8000
+ENV PORT 8089
 EXPOSE $PORT
 
-COPY advent /
-CMD ["/advent"]
+WORKDIR /go/src/github.com/jusongchen/KubeLearn1
+
+COPY kube1 /
+CMD ["/kube1"]
