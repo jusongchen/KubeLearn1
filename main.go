@@ -8,8 +8,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/rumyantseva/advent-2017/handlers"
-	"github.com/rumyantseva/advent-2017/version"
+	"github.com/jusongchen/KubeLearn1/handlers"
+	"github.com/jusongchen/KubeLearn1/version"
 )
 
 // How to try it: PORT=8000 go run main.go
